@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RouteIQ - TSP Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div><img src="tsp Image.png" alt="TSP Logo" width="70" height="70" /></div>
+    <h1>RouteIQ - Traveling Salesman Problem Solver</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Log in</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <section id="input-section">
+      <h2>Select Cities</h2>
+
+      <form id="tsp-form">
+        <!-- City Count Input -->
+        <label for="cities">Number of Cities</label>
+        <input type="number" id="cities" name="cities" min="2" required />
+
+        <!-- Map -->
+        <label for="distance-matrix">Choose Cities on Map</label>
+        <div id="map" style="height: 400px;"></div>
+
+        <!-- Algorithm Selection -->
+        <label for="algorithm">Select your Preference</label>
+        <select id="algorithm" name="algorithm" required>
+          <option value="">--Select Preference--</option>
+          <option value="nearest-neighbor">Faster Method (may not be accurate)</option>
+          <option value="dynamic-programming">Accurate Method (Takes more Time)</option>
+          <option value="Compare">Compare Both Methods</option>
+        </select>
+
+        <!-- Buttons -->
+        <button type="submit">Calculate Route</button>
+        <button type="reset">Reset</button>
+      </form>
+    </section>
+
+    <section id="output-section">
+      <h2>Optimal Route</h2>
+      <p id="route-output">The optimal route will be displayed here.</p>
+      <p id="distance-output">Total Distance: --</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 RouteIQ. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+  <script>
+    // Initialize map
+    var map = L.map("map").setView([28.6139, 77.2090], 7);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    // Add Geocoder (search bar)
+    L.Control.geocoder({
+      defaultMarkGeocode: true
+    }).addTo(map);
+  </script>
+
+  <!-- Custom JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>
